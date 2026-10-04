@@ -25,9 +25,18 @@ public class StudentRepo {
    System.out.println("No of rows affected:"+rows);
 		// System.out.println("Student saved successfully");
 	}
-
+//here we have used row mapper that is an functional interface used to map rows of the
+//ResultSet to object  -> smapRow(ResultSet rs, int rowNum): ● This method is executed for each row in the ResultSet. ● It contains two parameters: ○ ResultSet rs: The result of the SQL query containing the data. ○ int rowNum: The current row number in the ResultSet. ● It returns a Java object representing the current row, populated with data from the ResultSet. jdbcTemplate.query(): ● This method is used to perform SELECT operations in Spring JDBC. ● It requires two parameters: 1. SQL Query: The SQL query that need to be executed. 2. RowMapper: The object responsible for mapping each row of the ResultSet to a Java object.
 	public List<Student> findAll() {
-		List<Student> l1 = new ArrayList<>();
-		return l1;
+String sql="select * from student";
+return jdbc.query(sql,(rs,rowno)->{
+  Student s = new Student();
+  s.setRollNo(rs.getInt("rollno"));
+  s.setName(rs.getString("name"));
+  s.setMarks(rs.getInt("marks"));
+  return s;
+});
+
+	
 	}
 }
