@@ -13,9 +13,9 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		ApplicationContext cntxt=SpringApplication.run(DemoApplication.class, args);
     Student s=cntxt.getBean(Student.class);
-		s.setRollNo(1);
-		s.setName("John");
-		s.setMarks(80);
+		s.setRollNo(103);
+		s.setName("Aryan");
+		s.setMarks(90);
 		StudentService service = cntxt.getBean(StudentService.class);
     service.addStudent(s);
 
